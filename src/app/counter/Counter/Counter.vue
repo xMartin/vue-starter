@@ -56,7 +56,7 @@
       ...mapGetters('counter', ['count', 'incrementPending', 'decrementPending']),
     },
     prefetch:   (options: IPreLoad) => {
-      return options.store.dispatch('counter/increment');
+      return Promise.reject({some: 'error'});
     },
   };
 </script>

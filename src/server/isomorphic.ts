@@ -19,7 +19,7 @@ export interface IServerContext {
   acceptLanguage: string;
   htmlLang: string;
   appConfig: IAppConfig;
-  redirect: boolean;
+  redirect?: boolean;
 }
 
 export interface IPreLoad {

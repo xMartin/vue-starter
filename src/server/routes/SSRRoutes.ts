@@ -77,17 +77,16 @@ export const SSRRoutes = (app: Express.Application): any => {
       } else {
         res.status(500);
         Logger.error('error during rendering: %s; error: %s', req.url, JSON.stringify(err, Object.getOwnPropertyNames(err)));
-        render('/error', true);
+        render('/error');
       }
     };
-    const render = (url: string, redirect: boolean = false): void => {
+    const render = (url: string): void => {
       const serverContext: IServerContext = {
         url,
         cookies:        req.cookies,
         acceptLanguage: defaultLang,
         htmlLang:       defaultLang.substr(0, 2),
         appConfig:      RuntimeConfig(AppConfig, req),
-        redirect,
       };
 
       renderer
