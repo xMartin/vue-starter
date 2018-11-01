@@ -84,11 +84,6 @@ export default (context: IServerContext) => {
         return reject({ code: 302, path: router.currentRoute.fullPath });
       }
 
-      const routeMatchesCatchAll = router.currentRoute.matched.some((match) => match.path === '*');
-      if (routeMatchesCatchAll) {
-        return reject({ code: 404 });
-      }
-
       const matchedComponents: Component[] = [App as Component].concat(router.getMatchedComponents());
 
       Promise.all(
@@ -102,6 +97,9 @@ export default (context: IServerContext) => {
       )
         // catch prefetch errors just as we're doing on the client side
         .catch((error: any) => {
+          if (error.response.status === 404) {
+            reject({ code: 404 });
+          }
           Logger.warn(
             'error in prefetch for route: %s; error: %s',
             router.currentRoute.fullPath,

@@ -109,6 +109,7 @@
     "body-parser": "1.18.3",
     "compression": "1.7.3",
     "config": "2.0.1",
+    "contentful": "7.0.5",
     "cookie-parser": "1.4.3",
     "deepmerge": "2.2.1",
     "express": "4.16.4",
