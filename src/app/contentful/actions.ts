@@ -24,6 +24,7 @@ export const ContentfulActions: IContentfulActions = {
       })
       .catch(
         /* istanbul ignore next */ (e: AxiosError) => {
+          commit('SET_PAGE', null);
           throw e;
         },
       );
