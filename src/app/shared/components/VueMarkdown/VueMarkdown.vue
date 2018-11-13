@@ -42,6 +42,9 @@ export default {
   created() {
     this.createHTML();
   },
+  updated() {
+    this.createHTML();
+  },
   beforeMount() {
     this.createHTML();
   },

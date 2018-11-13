@@ -31,6 +31,7 @@ import VueGridRow from '../../shared/components/VueGridRow/VueGridRow.vue';
 import VueHeadline from '../../shared/components/VueHeadline/VueHeadline.vue';
 import VueMarkdown from '../../shared/components/VueMarkdown/VueMarkdown.vue';
 import VueCarousel, { ICarouselImage } from '../../shared/components/VueCarousel/VueCarousel.vue';
+import { Route } from 'vue-router';
 
 export default {
   metaInfo() {
@@ -82,6 +83,12 @@ export default {
     });
   },
   watch: {
+    $route(to: Route) {
+      this.$store.dispatch('contentful/getContent', {
+        slug: to.path,
+        locale: this.$store.getters['app/getLocale'],
+      });
+    },
     getLocale /* istanbul ignore next  */(newLocale: string) {
       this.getContent({ slug: this.$route.path, locale: newLocale });
     },
